@@ -3,6 +3,11 @@ import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, Too
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 
 export const SideBar = ({ drawerWidth = 240 }) => {
@@ -30,14 +35,29 @@ export const SideBar = ({ drawerWidth = 240 }) => {
 
             <List>
                 {['Dashboard', 'Vehiculo', 'Mantenimientos'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                        {index % 3 === 0 ? <Dashboard /> : index % 3 === 1 ? <LocalShippingRounded/> : <EngineeringRounded />}
-                        </ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
+                <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <ListItem key={text} disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+        
+                                {index % 3 === 0 ? <Dashboard /> : index % 3 === 1 ? <LocalShippingRounded/> : <EngineeringRounded />}
+        
+                                </ListItemIcon>
+                            <ListItemText primary={text} />
+                            </ListItemButton>
+                        </ListItem>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>
+                    cambiar el Typography por un listItem correspondiente
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
                 ))}
             </List>
             <Divider />
@@ -58,3 +78,4 @@ export const SideBar = ({ drawerWidth = 240 }) => {
     </Box>
   )
 }
+
